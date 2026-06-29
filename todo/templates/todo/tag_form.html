@@ -1,0 +1,17 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+<h2>Create New Tag</h2>
+
+<form method="post" novalidate>
+    {% csrf_token %}
+    <p>
+        <label class="fw-bold">Name:</label><br>
+        {{ form.name }}
+    </p>
+    <div class="d-flex gap-2 mt-4">
+        <a href="{% url 'todo:tag-list' %}" class="btn btn-light border px-4">Cancel</a>
+        <button type="submit" class="btn btn-primary px-4">Save</button>
+    </div>
+</form>
+{% endblock %}

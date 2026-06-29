@@ -1,0 +1,35 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="display-4 fw-bold m-0" style="font-size: 3.5rem;">Tags</h1>
+    <a href="{% url 'todo:tag-create' %}" class="btn btn-primary px-4 py-2 fs-5">Add</a>
+</div>
+
+<table class="table mt-4" style="border-top: 1px solid #dee2e6;">
+    <thead>
+        <tr class="fs-5 text-dark">
+            <th scope="col" class="border-bottom-0 py-3">Name</th>
+            <th scope="col" class="border-bottom-0 py-3">Update</th>
+            <th scope="col" class="border-bottom-0 py-3">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tag in object_list %}
+            <tr class="fs-5 border-bottom">
+                <td class="py-4 align-middle text-dark">{{ tag.name }}</td>
+                <td class="py-4">
+                    <a href="{% url 'todo:tag-update' tag.id %}" class="btn btn-secondary px-4 py-2 text-white">Update</a>
+                </td>
+                <td class="py-4">
+                    <a href="{% url 'todo:tag-delete' tag.id %}" class="btn btn-secondary px-4 py-2 text-white">Delete</a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="3" class="text-muted py-3 border-0">No tags available.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
